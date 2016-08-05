@@ -10,19 +10,25 @@ Plugin 'gmarik/vundle'
 " Plugin bundles
 Bundle 'ervandew/supertab'
 Bundle 'scrooloose/nerdtree'
-Bundle 'kien/ctrlp.vim'
+Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Raimondi/delimitMate'
 Bundle 'mattn/emmet-vim.git'
 Bundle 'Valloric/MatchTagAlways'
+Plugin 'mileszs/ack.vim'
 
 " Language bundles
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'pangloss/vim-javascript'
 Bundle 'tpope/vim-git'
+Bundle 'tpope/vim-rails'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'elzr/vim-json'
 Bundle 'groenewege/vim-less'
+Bundle 'slim-template/vim-slim.git'
+Bundle 'tpope/vim-endwise'
+Bundle 'fatih/vim-go'
+Bundle 'Glench/Vim-Jinja2-Syntax'
 
 " Color scheme
 Bundle 'nanotech/jellybeans.vim'
@@ -59,6 +65,7 @@ set lazyredraw
 set splitbelow
 set splitright
 set scrolloff=4
+set autochdir
 
 if has("multi_byte")
   if &termencoding == ""
@@ -80,6 +87,10 @@ noremap <space> :
 noremap <tab> <c-w><c-w>
 noremap <s-tab> :bn<CR>
 
+" Insert binding.pry
+map <leader>B Obinding.pry<Esc>
+map <leader>b obinding.pry<Esc>
+
 " NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
 
@@ -94,10 +105,10 @@ let g:SuperTabDefaultCompletionType = "context"
 nnoremap <silent> t :CtrlP<cr>
 nnoremap <silent><leader>t :CtrlP<cr>
 nnoremap <silent><leader>r :CtrlPMRUFiles<cr>
-nnoremap <silent><leader>b :CtrlPBuffer<cr>
+"nnoremap <silent><leader>b :CtrlPBuffer<cr>
 
-let g:ctrlp_match_window_bottom = 0
-let g:ctrlp_match_window_reversed = 0
+"let g:ctrlp_match_window_bottom = 0
+"let g:ctrlp_match_window_reversed = 0
 
 let g:ctrlp_working_path_mode = 2
 let g:ctrlp_by_filename = 0
@@ -105,11 +116,20 @@ let g:ctrlp_max_files = 1000
 let g:ctrlp_max_depth = 6
 let g:ctrlp_root_markers = ['.git']
 
+" Emmet
 let g:user_emmet_expandabbr_key = '<leader>,'
 
 filetype on
 
-au BufReadPost Vagrantfile set syntax=ruby
+au BufReadPost Vagrantfile set ft=ruby
+au BufRead,BufNewFile *.ru set ft=ruby
+
+" trim trailing whitespace on save
+function! TrimWhiteSpace()
+  %s/\s\+$//e
+endfunction
+autocmd FileType ruby,java,javascript,python,c,cpp autocmd BufWritePre <buffer> :call TrimWhiteSpace()
+set tw=0
 
 "let g:ctrlp_user_command = {
 "  \ 'types': { 1: ['.git/', 'cd %s && git ls-files'] },
