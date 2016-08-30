@@ -97,17 +97,3 @@ ZSH_TMUX_AUTOSTART=true
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export NVM_DIR=~/.nvm
 . $(brew --prefix nvm)/nvm.sh
-
-eval "$(rbenv init -)"
-eval "$(direnv hook zsh)"
-eval "$(docker-machine env integration)"
-
-alias rs="be rails s"
-alias dm="docker-machine"
-alias dmenv="eval $(docker-machine env integration)"
-alias be="bundle exec"
-alias src="source ~/.zshrc"
-alias resetdb="rake db:drop db:create db:structure:load db:seed"
-alias p1="awk '{ print \$1}'"
-alias p2="awk '{ print \$2}'"
-alias sw="/usr/local/Cellar/ansible/2.0.1.0/libexec/vendor/bin/swift"
