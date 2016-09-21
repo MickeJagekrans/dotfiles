@@ -1,45 +1,43 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle handle Vundle
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
 " Plugin bundles
 Bundle 'ervandew/supertab'
 Bundle 'scrooloose/nerdtree'
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-surround'
 Bundle 'Raimondi/delimitMate'
 Bundle 'mattn/emmet-vim.git'
-Bundle 'Valloric/MatchTagAlways'
 Plugin 'mileszs/ack.vim'
 
 " Language bundles
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'pangloss/vim-javascript'
 Bundle 'tpope/vim-git'
-Bundle 'tpope/vim-rails'
-Bundle 'digitaltoad/vim-jade'
 Bundle 'elzr/vim-json'
-Bundle 'groenewege/vim-less'
-Bundle 'slim-template/vim-slim.git'
 Bundle 'tpope/vim-endwise'
 Bundle 'fatih/vim-go'
-Bundle 'Glench/Vim-Jinja2-Syntax'
+Bundle 'mattreduce/vim-mix'
+Bundle 'elixir-lang/vim-elixir'
 
 " Color scheme
 Bundle 'nanotech/jellybeans.vim'
 
+call vundle#end()
+
 filetype plugin indent on
+syntax enable
 
 let mapleader=","
 
 color jellybeans
-
-syntax on
 
 set cursorline
 set expandtab
@@ -48,8 +46,6 @@ set shiftwidth=2
 set clipboard=unnamed
 set synmaxcol=256
 set ttyscroll=3
-"set encoding=utf-8
-"set fileencoding=utf-8
 set tabstop=2
 set nowrap
 set number
@@ -87,10 +83,6 @@ noremap <space> :
 noremap <tab> <c-w><c-w>
 noremap <s-tab> :bn<CR>
 
-" Insert binding.pry
-map <leader>B Obinding.pry<Esc>
-map <leader>b obinding.pry<Esc>
-
 " NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
 
@@ -123,13 +115,8 @@ filetype on
 
 au BufReadPost Vagrantfile set ft=ruby
 au BufRead,BufNewFile *.ru set ft=ruby
-
-" trim trailing whitespace on save
-function! TrimWhiteSpace()
-  %s/\s\+$//e
-endfunction
-autocmd FileType ruby,java,javascript,python,c,cpp autocmd BufWritePre <buffer> :call TrimWhiteSpace()
-set tw=0
+au BufRead,BufNewFile *.ex,*.exs set filetype=elixir
+au BufRead,BufNewFile *.eex set filetype=eelixir
 
 "let g:ctrlp_user_command = {
 "  \ 'types': { 1: ['.git/', 'cd %s && git ls-files'] },
