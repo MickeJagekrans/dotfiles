@@ -62,6 +62,8 @@ set splitbelow
 set splitright
 set scrolloff=4
 set autochdir
+set backspace=indent,eol,start
+set mouse=a
 
 if has("multi_byte")
   if &termencoding == ""
