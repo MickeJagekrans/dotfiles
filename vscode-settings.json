@@ -1,0 +1,68 @@
+{
+  "terminal.integrated.rendererType": "dom",
+  "workbench.colorTheme": "Pitch Black",
+  "vim.leader": ",",
+  "vim.visualModeKeyBindings": [
+    {
+      "before": [
+        "<space>"
+      ],
+      "after": [
+        ":"
+      ]
+    }
+  ],
+  "vim.normalModeKeyBindings": [
+    {
+      "before": [
+        "<space>"
+      ],
+      "after": [
+        ":"
+      ]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "u"
+      ],
+      "after": [],
+      "commands": [
+        {
+          "command": "undo",
+          "args": []
+        }
+      ]
+    },
+    {
+      "before": [
+        "<C-r>"
+      ],
+      "after": [],
+      "commands": [
+        {
+          "command": "redo",
+          "args": []
+        }
+      ]
+    }
+  ],
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "terminal.integrated.shell.windows": "C:\\Program Files\\PowerShell\\6\\pwsh.exe",
+  "todo-tree.tree.showScanModeButton": false,
+  "vim.enableNeovim": true,
+  "vim.neovimPath": "C:\\Tools\\Neovim\\bin\\nvim.exe",
+  "typescript.format.semicolons": "insert",
+  "typescript.validate.enable": true,
+  "javascript.format.semicolons": "insert",
+  "eslint.alwaysShowStatus": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "eslint.format.enable": true,
+  "files.eol": "\r\n",
+  "vim.commandLineModeKeyBindingsNonRecursive": [],
+  "vim.commandLineModeKeyBindings": []
+}
