@@ -18,7 +18,6 @@ Bundle 'mattn/emmet-vim.git'
 Plugin 'mileszs/ack.vim'
 
 " Language bundles
-Bundle 'kchmck/vim-coffee-script'
 Bundle 'pangloss/vim-javascript'
 Bundle 'tpope/vim-git'
 Bundle 'elzr/vim-json'
