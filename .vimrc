@@ -1,40 +1,30 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin()
 
-" let Vundle handle Vundle
-Plugin 'gmarik/Vundle.vim'
+" Plugins
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'Raimondi/delimitMate'
+Plug 'mileszs/ack.vim'
 
-" Plugin bundles
-Bundle 'ervandew/supertab'
-Bundle 'scrooloose/nerdtree'
-Bundle 'ctrlpvim/ctrlp.vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'Raimondi/delimitMate'
-Bundle 'mattn/emmet-vim.git'
-Plugin 'mileszs/ack.vim'
-
-" Language bundles
-Bundle 'pangloss/vim-javascript'
-Bundle 'tpope/vim-git'
-Bundle 'elzr/vim-json'
-Bundle 'tpope/vim-endwise'
-Bundle 'fatih/vim-go'
-Bundle 'mattreduce/vim-mix'
-Bundle 'elixir-lang/vim-elixir'
+" Language plugins
+Plug 'pangloss/vim-javascript'
+Plug 'elzr/vim-json'
+Plug 'hashivim/vim-terraform'
 
 " Color scheme
 Bundle 'nanotech/jellybeans.vim'
 
-call vundle#end()
-
-filetype plugin indent on
-syntax enable
+call plug#end()
 
 let mapleader=","
+
+" let &t_SI = "\<esc>[5 q"  " blinking I-beam in insert mode
+" let &t_SR = "\<esc>[3 q"  " blinking underline in replace mode
+" let &t_EI = "\<esc>[ q"  " default cursor (usually blinking block) otherwise]]]
 
 color jellybeans
 
@@ -46,13 +36,12 @@ set clipboard=unnamed
 set synmaxcol=256
 set ttyscroll=3
 set tabstop=2
-set nowrap
 set number
-set nowritebackup
 set noswapfile
-set nobackup
 set nohlsearch
 set noundofile
+set nobackup
+set nowritebackup
 set incsearch
 set ignorecase
 set smartcase
@@ -74,6 +63,14 @@ if has("multi_byte")
   set fileencodings=ucs-bom,utf-8,latin1
 endif
 
+" Use ripgrep for searching
+if executable("rg")
+  let g:ctrlp_user_command = 'rg %s --files --hidden --color=never --glob ""'
+endif
+
+filetype plugin indent on	
+syntax enable
+
 " No show command
 autocmd VimEnter * set nosc
 
@@ -84,15 +81,11 @@ noremap <space> :
 noremap <tab> <c-w><c-w>
 noremap <s-tab> :bn<CR>
 
-" NERDTree
-nmap <leader>n :NERDTreeToggle<CR>
-
-let NERDTreeMapOpenInTab='\t'
-let NERDTreeHighlightCursorline=1
-let NERDTreeIgnore = ['tmp', '.yardoc', 'pkg', '.DS_Store']
-
-" SuperTab
-let g:SuperTabDefaultCompletionType = "context"
+" Nav between buffers
+nnoremap <c-left> :tabprevious<cr>
+nnoremap <c-right> :tabnext<cr>
+nnoremap <c-j> :tabprevious<cr>
+nnoremap <c-k> :tabnext<cr>
 
 " CtrlP
 nnoremap <silent> t :CtrlP<cr>
@@ -109,17 +102,4 @@ let g:ctrlp_max_files = 1000
 let g:ctrlp_max_depth = 6
 let g:ctrlp_root_markers = ['.git']
 
-" Emmet
-let g:user_emmet_expandabbr_key = '<leader>,'
-
 filetype on
-
-au BufReadPost Vagrantfile set ft=ruby
-au BufRead,BufNewFile *.ru set ft=ruby
-au BufRead,BufNewFile *.ex,*.exs set filetype=elixir
-au BufRead,BufNewFile *.eex set filetype=eelixir
-
-"let g:ctrlp_user_command = {
-"  \ 'types': { 1: ['.git/', 'cd %s && git ls-files'] },
-"  \ 'fallback': 'find %s -type f | head -' . g:ctrlp_max_files
-"  \ }
